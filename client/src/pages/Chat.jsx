@@ -1,8 +1,7 @@
 import React from 'react'
-import Content from '../layout/Content'
 
 const Chat = () => {
-  return <Content />
+  return <div>Chat</div>
 }
 
 export default Chat

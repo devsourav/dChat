@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "clean": "rimraf dist",
+    "start": "node server.js",
     "dev": "vite && npm run build:css",
     "build": "vite build && npm run build:css",
     "preview": "vite preview && npm run build:css",
@@ -14,13 +16,17 @@
   "dependencies": {
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
+    "express": "^4.18.2",
+    "gun": "^0.2020.1239",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "node-sass": "^8.0.0",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.9.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
