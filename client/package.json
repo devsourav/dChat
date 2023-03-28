@@ -16,6 +16,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.16",
+    "clsx": "^1.2.1",
     "express": "^4.18.2",
     "gun": "^0.2020.1239",
     "localforage": "^1.10.0",
@@ -24,6 +25,7 @@
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.8",
     "react-router-dom": "^6.9.0",
     "sort-by": "^1.2.0",
     "url": "^0.11.0"
