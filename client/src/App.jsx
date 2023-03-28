@@ -1,11 +1,13 @@
-import { useState } from 'react'
-import Content from './layout/Content'
-import './App.css'
+import React from 'react'
+import { Provider } from './store/storeHandler'
+import { Router } from './routes/Router'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return <Content />
+  return (
+    <Provider>
+      <Router />
+    </Provider>
+  )
 }
 
 export default App
