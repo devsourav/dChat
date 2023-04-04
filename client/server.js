@@ -5,12 +5,12 @@ import Gun from 'gun'
 
 const app = express()
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8765
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-
 const indexPath = path.join(__dirname, 'dist/index.html')
+
 app.use(express.static('dist'))
 app.get('*', function (_, res) {
   res.sendFile(indexPath)

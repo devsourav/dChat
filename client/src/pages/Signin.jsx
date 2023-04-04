@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { ethers } from 'ethers'
+import { AppContext } from '../providers/storeProvider'
+import { Web3Provider } from '../providers/web3Provider'
+import { signIn, getUserPublicKey } from '../services/gunServices/userService'
 import Card from '../components/Card'
 
 export const Signin = () => {
+  const { states, actions } = useContext(AppContext)
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -11,10 +18,29 @@ export const Signin = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  useEffect(() => {
+    const walletProvider = new ethers.providers.Web3Provider(window.ethereum)
+    console.log(actions)
+    walletProvider && Web3Provider(walletProvider, actions)
+    // getUserPublicKey('ravi', (data) => {
+    //   console.log('hello ' + data)
+    // })
+  }, [])
+
+  const onSubmit = async (data) => {
+    signIn(data.userName, data.password, (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log('user signIn')
+        navigate('chats')
+      }
+    })
+    console.log(data)
+  }
 
   return (
-    <Card>
+    <Card className={'mx-auto max-w-sm p-4 sm:p-6 md:p-8'}>
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
         {/* <h5 className="text-xl font-medium text-gray-900 dark:text-white">
           Sign in to our platform
