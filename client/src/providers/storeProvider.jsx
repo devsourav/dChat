@@ -7,9 +7,12 @@ const initialState = {
   user: null,
   chatList: [],
   requestList: [],
+  account: '',
+  contract: null,
+  provider: null,
 }
 
-// Actions
+// Action types
 const type = {
   TOGGLE_THEME: 'TOGGLE_THEME',
   IS_ACTIVE_USER: 'IS_ACTIVE_USER',
@@ -18,6 +21,9 @@ const type = {
   REMOVE_CHAT_USER: 'REMOVE_CHAT_USER',
   ADD_REQUEST_USER: 'ADD_REQUEST_USER',
   REMOVE_REQUEST_USER: 'REMOVE_REQUEST_USER',
+  SET_ACCOUNT: 'SET_ACCOUNT',
+  SET_CONTRACT: 'SET_CONTRACT',
+  SET_PROVIDER: 'SET_PROVIDER',
 }
 
 // Reducer to Handle Actions
@@ -64,13 +70,28 @@ const reducer = (state, action) => {
         ...state,
         requestList: filteredRequestList,
       }
+    case type.SET_ACCOUNT:
+      return {
+        ...state,
+        account: action.account,
+      }
+    case type.SET_CONTRACT:
+      return {
+        ...state,
+        contract: action.contract,
+      }
+    case type.SET_PROVIDER:
+      return {
+        ...state,
+        provider: action.provider,
+      }
     default:
       return state
   }
 }
 
 //Context and Provider
-const AppContext = createContext()
+export const AppContext = createContext()
 
 export const Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -81,6 +102,9 @@ export const Provider = ({ children }) => {
     user: state.user,
     chatList: state.chatList,
     requestList: state.requestList,
+    account: state.account,
+    contract: state.contract,
+    provider: state.provider,
   }
 
   const actions = {
@@ -104,6 +128,15 @@ export const Provider = ({ children }) => {
     },
     removeRequestUser: (userId) => {
       dispatch({ type: type.REMOVE_REQUEST_USER, userId })
+    },
+    setAccount: (account) => {
+      dispatch({ type: type.SET_ACCOUNT, account })
+    },
+    setContract: (contract) => {
+      dispatch({ type: type.SET_CONTRACT, contract })
+    },
+    setProvider: (provider) => {
+      dispatch({ type: type.SET_PROVIDER, provider })
     },
   }
 

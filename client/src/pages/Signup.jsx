@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { signUp } from '../services/gunServices/userService'
 import Card from '../components/Card'
 
 export const Signup = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -11,10 +15,20 @@ export const Signup = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    signUp(data.userName, data.password, (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        navigate('sign-in')
+        console.log('user signUp')
+      }
+    })
+    console.log(data)
+  }
 
   return (
-    <Card>
+    <Card className={'mx-auto max-w-sm p-4 sm:p-6 md:p-8'}>
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
         {/* <h5 className="text-xl font-medium text-gray-900 dark:text-white">
           Sign in to our platform
@@ -65,7 +79,7 @@ export const Signup = () => {
           type="submit"
           className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          Sign up
+          Sign Up
         </button>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
           Go back to{' '}
@@ -73,7 +87,7 @@ export const Signup = () => {
             to="/sign-in"
             className="text-blue-700 hover:underline dark:text-blue-500"
           >
-            Sign in
+            Sign In
           </Link>
         </div>
       </form>

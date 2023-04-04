@@ -33,12 +33,12 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/Chats',
+    path: '/chats',
     element: <ChatBase />,
     errorElement: <Error />,
     children: [
       {
-        path: ':userId',
+        index: true,
         async lazy() {
           let { Chat } = await import('../pages/Chat')
           return { Component: Chat }

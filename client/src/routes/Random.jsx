@@ -5,7 +5,7 @@ import Brand from '../components/Brand'
 
 const Random = () => {
   return (
-    <Container>
+    <Container className={'pt-[12%] text-center text-white'}>
       <Brand />
       <Outlet />
     </Container>
