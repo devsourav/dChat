@@ -4,8 +4,8 @@ import Tabs from '../components/Tabs'
 
 const SideNav = () => {
   return (
-    <div className="flex h-full w-1/3 flex-col bg-slate-500">
-      <AutoComplete className={'p-4'} />
+    <div className="flex h-full w-full flex-col bg-skin-fill sm:w-[20%] md:w-[25%] lg:w-[30%]">
+      <AutoComplete className={'bg-skin-secondary p-4'} />
       <Tabs />
     </div>
   )

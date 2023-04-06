@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import eslint from 'vite-plugin-eslint'
 
@@ -31,5 +31,10 @@ export default defineConfig({
       'gun/lib/rindexed',
     ],
   },
-  plugins: [react(), eslint(), moduleExclude('text-encoding')],
+  plugins: [
+    react(),
+    eslint(),
+    moduleExclude('text-encoding'),
+    splitVendorChunkPlugin(),
+  ],
 })
