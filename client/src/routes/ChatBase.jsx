@@ -8,9 +8,9 @@ import Card from '../components/Card'
 
 const ChatBase = () => {
   return (
-    <Container className={'px-6'}>
+    <Container className={'w-full px-0 sm:px-2 md:px-4 lg:px-6'}>
       <Header />
-      <Card className={'flex h-full'}>
+      <Card className={'bg-transparent flex h-full'}>
         <SideNav />
         <Outlet />
       </Card>

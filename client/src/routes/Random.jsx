@@ -7,7 +7,7 @@ const Random = () => {
   return (
     <Container
       className={
-        'pt-[40%] text-center text-white sm:pt-[30%] md:pt-[20%] lg:pt-[12%]'
+        'w-full pt-[40%] text-center text-white sm:pt-[30%] md:pt-[20%] lg:pt-[12%]'
       }
     >
       <Brand />

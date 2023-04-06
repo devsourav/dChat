@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 
 const ContentSwitch = ({ category, user }) => {
   if (!category && !category.length) return <></>
@@ -17,12 +18,12 @@ const ContentSwitch = ({ category, user }) => {
             {user.name}
           </h3>
           <div>
-            <button className="mx-2 rounded-lg border border-gray-400 bg-white p-1 text-xs text-gray-800 shadow hover:bg-gray-100">
+            <Button className={'mx-3 bg-skin-secondary py-1 px-2 text-xs'}>
               Accept
-            </button>
-            <button className="rounded-lg border border-gray-400 bg-white p-1 text-xs text-gray-800 shadow hover:bg-gray-100">
+            </Button>
+            <Button className={'bg-skin-primary py-1 px-2 text-xs'}>
               Reject
-            </button>
+            </Button>
           </div>
         </div>
       )
@@ -33,29 +34,14 @@ const ContentSwitch = ({ category, user }) => {
 
 const UserCard = ({ category, user }) => {
   return (
-    <li
-      key={user.id}
-      className="relative flex items-center p-3 hover:bg-gray-100"
-    >
+    <li key={user.id} className="relative flex items-center p-3">
       <div className="avatar-wraper">
         <img src={user.avatar} alt="user" />
       </div>
-      <div className="w-full">
+      <div className="w-full text-skin-base">
         <ContentSwitch category={category} user={user} />
-        <p className="text-end text-xs text-gray-400">{user.date}</p>
+        <p className="text-gray-400 text-end text-xs">{user.date}</p>
       </div>
-
-      {/* <ul className="mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500">
-        <li>{user.date}</li>
-      </ul> */}
-
-      {/* <a
-        href="#"
-        className={classNames(
-          'absolute inset-0 rounded-md',
-          'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2',
-        )}
-      /> */}
     </li>
   )
 }

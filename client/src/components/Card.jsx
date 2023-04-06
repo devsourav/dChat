@@ -4,7 +4,7 @@ import clsx from 'clsx'
 const Card = ({ className, ...props }) => {
   return (
     <div
-      className={clsx('w-full overflow-hidden rounded-sm shadow-xl', className)}
+      className={clsx('w-full overflow-hidden rounded-sm shadow-lg', className)}
       {...props}
     />
   )
