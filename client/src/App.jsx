@@ -5,9 +5,11 @@ import './styles/app.scss'
 
 function App() {
   return (
-    <Provider>
-      <Router />
-    </Provider>
+    <div className="animate">
+      <Provider>
+        <Router />
+      </Provider>
+    </div>
   )
 }
 

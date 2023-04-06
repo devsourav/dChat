@@ -7,7 +7,9 @@ body {
   margin: 0px;
   padding: 0px;
   height: 100vh;
-  background-color: #000000;
+  background-color: #1e1f23; // #000000;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 #root {
@@ -23,4 +25,13 @@ body {
   img {
     object-fit: contain;
   }
+}
+
+.animate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }

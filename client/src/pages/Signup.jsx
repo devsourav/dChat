@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { signUp } from '../services/gunServices/userService'
 import Card from '../components/Card'
+import Button from '../components/Button'
+import Input from '../components/Input'
 
 export const Signup = () => {
   const navigate = useNavigate()
@@ -11,7 +13,7 @@ export const Signup = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm()
 
@@ -28,65 +30,56 @@ export const Signup = () => {
   }
 
   return (
-    <Card className={'mx-auto max-w-sm p-4 sm:p-6 md:p-8'}>
-      <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        {/* <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-          Sign in to our platform
-        </h5> */}
-        <div>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-            placeholder="Username"
-            {...register('userName', { required: true })}
-          />
-          {errors.userName && (
-            <span className="text-sm text-red-500">This field is required</span>
-          )}
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-            {...register('password', { required: true })}
-          />
-          {errors.password && (
-            <span className="text-sm text-red-500">This field is required</span>
-          )}
-        </div>
+    <Card
+      className={'mx-auto max-w-sm bg-skin-fill p-4 opacity-80 sm:p-6 md:p-8'}
+    >
+      <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          type="text"
+          id="userName"
+          name="username"
+          placeholder="Username"
+          className="w-full"
+          errors={errors}
+          {...register('userName', { required: true })}
+        />
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          className="w-full"
+          errors={errors}
+          {...register('password', { required: true })}
+        />
         <div>
           <select
             id="gender"
             name="gender"
+            placeholder="Gender"
             {...register('gender', { required: true })}
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
+            className="mb-4 w-full rounded-sm border p-2 text-sm text-skin-fill"
           >
-            <option></option>
+            <option>Select gender</option>
             <option value="female">female</option>
             <option value="male">male</option>
             <option value="other">other</option>
           </select>
           {errors.password && (
-            <span className="text-sm text-red-500">This field is required</span>
+            <span className="text-xs text-skin-secondary">
+              This field is required
+            </span>
           )}
         </div>
-        <button
+        <Button
           type="submit"
-          className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className={'w-full bg-skin-secondary py-2 px-6 font-bold'}
         >
           Sign Up
-        </button>
-        <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+        </Button>
+        <div className="pt-2 text-sm font-medium text-skin-primary">
           Go back to{' '}
-          <Link
-            to="/sign-in"
-            className="text-blue-700 hover:underline dark:text-blue-500"
-          >
+          <Link to="/sign-in" className="text-skin-secondary hover:underline">
             Sign In
           </Link>
         </div>

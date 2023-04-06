@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import { ethers } from 'ethers'
 import { AppContext } from '../providers/storeProvider'
 import { Web3Provider } from '../providers/web3Provider'
-import { signIn, getUserPublicKey } from '../services/gunServices/userService'
+import { signIn } from '../services/gunServices/userService'
 import Card from '../components/Card'
+import Button from '../components/Button'
+import Input from '../components/Input'
 
 export const Signin = () => {
   const { states, actions } = useContext(AppContext)
@@ -14,7 +16,7 @@ export const Signin = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm()
 
@@ -22,9 +24,6 @@ export const Signin = () => {
     const walletProvider = new ethers.providers.Web3Provider(window.ethereum)
     console.log(actions)
     walletProvider && Web3Provider(walletProvider, actions)
-    // getUserPublicKey('ravi', (data) => {
-    //   console.log('hello ' + data)
-    // })
   }, [])
 
   const onSubmit = async (data) => {
@@ -40,50 +39,38 @@ export const Signin = () => {
   }
 
   return (
-    <Card className={'mx-auto max-w-sm p-4 sm:p-6 md:p-8'}>
-      <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        {/* <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-          Sign in to our platform
-        </h5> */}
-        <div>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-            placeholder="Username"
-            {...register('userName', { required: true })}
-          />
-          {errors.userName && (
-            <span className="text-sm text-red-500">This field is required</span>
-          )}
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-            className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
-            {...register('password', { required: true })}
-          />
-          {errors.password && (
-            <span className="text-sm text-red-500">This field is required</span>
-          )}
-        </div>
-        <button
+    <Card
+      className={'mx-auto max-w-sm bg-skin-fill p-4 opacity-80 sm:p-6 md:p-8'}
+    >
+      <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          type="text"
+          id="userName"
+          name="username"
+          placeholder="Username"
+          className="w-full"
+          errors={errors}
+          {...register('userName', { required: true })}
+        />
+        <Input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          className="w-full"
+          errors={errors}
+          {...register('password', { required: true })}
+        />
+        <Button
           type="submit"
-          className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className={'w-full bg-skin-secondary py-2 px-6 font-bold'}
         >
-          Sign in
-        </button>
-        <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+          Sign In
+        </Button>
+        <div className="pt-2 text-sm font-medium text-skin-primary">
           Not registered?{' '}
-          <Link
-            to="/sign-up"
-            className="text-blue-700 hover:underline dark:text-blue-500"
-          >
-            Sign up
+          <Link to="/sign-up" className="text-skin-secondary hover:underline">
+            Sign Up
           </Link>
         </div>
       </form>

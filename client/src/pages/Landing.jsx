@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Button from '../components/Button'
 
 export const Landing = () => {
   const navigate = useNavigate()
@@ -10,29 +11,29 @@ export const Landing = () => {
 
   return (
     <div>
-      <p className="mx-auto w-2/3">
+      <p className="mx-auto w-[90%] sm:w-[80%] md:w-[60%] lg:w-[45%]">
         Welcome to the next generation of online communication! Our
         decentralized chat platform offers end-to-end encryption, cryptocurrency
         transactions, and file sharing with IPFS, ensuring your privacy,
         security, and data storage needs are all met in one convenient location.
       </p>
       <div className="py-10">
-        <button
-          className="mx-5 rounded-lg bg-white py-2 px-4 font-bold text-blue-500 hover:bg-gray-200"
+        <Button
+          className="mx-5 bg-skin-secondary py-2 px-6 font-bold"
           onClick={() => {
             navToPage('sign-in')
           }}
         >
-          Signin
-        </button>
-        <button
-          className="mx-5 rounded-lg bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+          Sign In
+        </Button>
+        <Button
+          className="mx-5 bg-skin-primary py-2 px-6 font-bold"
           onClick={() => {
             navToPage('sign-up')
           }}
         >
-          Signup
-        </button>
+          Sign Up
+        </Button>
       </div>
       {/* <p className="mx-auto w-2/3 text-center">
         Our platform utilizes cutting-edge blockchain technology to facilitate
