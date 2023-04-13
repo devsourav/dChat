@@ -11,7 +11,8 @@ module.exports = {
           fill: 'var(--color-fill)',
           primary: 'var(--color-primary)',
           secondary: 'var(--color-secondary)',
-        }
+          tertiary: 'var(--color-tertiary)',
+        },
       },
       backgroundColor: {
         skin: {
@@ -19,8 +20,9 @@ module.exports = {
           fill: 'var(--color-fill)',
           primary: 'var(--color-primary)',
           secondary: 'var(--color-secondary)',
-        }
-      }
+          tertiary: 'var(--color-tertiary)',
+        },
+      },
     },
     screens: {
       sm: '480px',

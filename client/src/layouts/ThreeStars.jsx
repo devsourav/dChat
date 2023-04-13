@@ -12,6 +12,25 @@ const ThreeStars = () => {
   )
 }
 
+const colorPalette = [
+  '#ffa0e0',
+  '#ebe8d9',
+  '#f65039',
+  '#e0e0e0',
+  '#ccff99',
+  '#ff99cc',
+  '#99ccff',
+  '#ff9999',
+  '#99ffff',
+  '#ffff99',
+]
+
+const colorPicker = () => {
+  const index = Math.floor(Math.random() * 10)
+  console.log(index)
+  return colorPalette[index]
+}
+
 const Stars = (props) => {
   const ref = useRef()
   const [sphere] = useState(() =>
@@ -34,8 +53,9 @@ const Stars = (props) => {
       >
         <PointMaterial
           transparent
-          color="#ffa0e0"
+          color={colorPicker()}
           size={0.005}
+          fog={true}
           sizeAttenuation={true}
           depthWrite={false}
         />

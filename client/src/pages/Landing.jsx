@@ -35,13 +35,6 @@ export const Landing = () => {
           Sign Up
         </Button>
       </div>
-      {/* <p className="mx-auto w-2/3 text-center">
-        Our platform utilizes cutting-edge blockchain technology to facilitate
-        instant and secure transactions, while IPFS provides a peer-to-peer
-        network for storing and sharing files. Join our community today and
-        experience a new level of privacy, security, and convenience in your
-        online interactions.
-      </p> */}
     </div>
   )
 }
