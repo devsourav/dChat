@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --color-base: #ffffff;
-        --color-fill: #1e1f23;
-        --color-primary: #ebe8d9;
-        --color-secondary: #f65039;
-    }
+  :root {
+    --color-base: #ffffff;
+    --color-fill: #1e1f23;
+    --color-primary: #ebe8d9;
+    --color-secondary: #f65039;
+    --color-tertiary: #cb4635;
+  }
 }

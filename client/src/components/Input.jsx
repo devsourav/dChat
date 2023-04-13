@@ -1,12 +1,21 @@
 import React, { forwardRef } from 'react'
+import Icon from '@mui/material/Icon'
 import clsx from 'clsx'
 
-const Input = forwardRef(({ className, errors, ...props }, ref) => {
+const Input = forwardRef(({ className, errors, component, ...props }, ref) => {
   return (
-    <div className="relative pb-4">
+    <div className={clsx(errors ? 'pb-4' : 'pb-0', 'relative flex w-full')}>
+      {component ? (
+        <div className="absolute self-center px-2">
+          <Icon color="warning" component={component} />
+        </div>
+      ) : (
+        <></>
+      )}
       <input
         className={clsx(
-          'rounded-sm border bg-skin-primary p-2 text-sm text-skin-fill focus:ring-offset-black',
+          component ? 'ps-10' : '',
+          'rounded-sm border border-none bg-skin-primary p-2 text-sm text-skin-fill outline-none focus:bg-skin-base',
           className,
         )}
         {...props}

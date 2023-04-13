@@ -30,6 +30,20 @@ const router = createBrowserRouter([
           return { Component: Signup }
         },
       },
+      {
+        path: 'about',
+        async lazy() {
+          let { About } = await import('../pages/About')
+          return { Component: About }
+        },
+      },
+      {
+        path: 'contacts',
+        async lazy() {
+          let { Contacts } = await import('../pages/Contacts')
+          return { Component: Contacts }
+        },
+      },
     ],
   },
   {
@@ -39,6 +53,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        async lazy() {
+          let { Default } = await import('../pages/Default')
+          return { Component: Default }
+        },
+      },
+      {
+        path: ':userId',
         async lazy() {
           let { Chat } = await import('../pages/Chat')
           return { Component: Chat }

@@ -2,6 +2,8 @@ import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
+import VpnKeyRoundedIcon from '@mui/icons-material/VpnKeyRounded'
 import { ethers } from 'ethers'
 import { AppContext } from '../providers/storeProvider'
 import { Web3Provider } from '../providers/web3Provider'
@@ -40,7 +42,9 @@ export const Signin = () => {
 
   return (
     <Card
-      className={'mx-auto max-w-sm bg-skin-fill p-4 opacity-80 sm:p-6 md:p-8'}
+      className={
+        'bg-blur bordered mx-auto max-w-sm bg-skin-fill p-4 opacity-80 sm:p-6 md:p-8'
+      }
     >
       <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
         <Input
@@ -50,6 +54,7 @@ export const Signin = () => {
           placeholder="Username"
           className="w-full"
           errors={errors}
+          component={AccountCircleRoundedIcon}
           {...register('userName', { required: true })}
         />
         <Input
@@ -59,6 +64,7 @@ export const Signin = () => {
           placeholder="Password"
           className="w-full"
           errors={errors}
+          component={VpnKeyRoundedIcon}
           {...register('password', { required: true })}
         />
         <Button

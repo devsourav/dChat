@@ -7,6 +7,7 @@ const initialState = {
   user: null,
   chatList: [],
   requestList: [],
+  messageList: [],
   account: '',
   contract: null,
   provider: null,
@@ -19,8 +20,12 @@ const type = {
   UPDATE_USER: 'UPDATE_USER',
   ADD_CHAT_USER: 'ADD_CHAT_USER',
   REMOVE_CHAT_USER: 'REMOVE_CHAT_USER',
+  UPDATE_CHAT_USER: 'UPDATE_CHAT_USER',
   ADD_REQUEST_USER: 'ADD_REQUEST_USER',
   REMOVE_REQUEST_USER: 'REMOVE_REQUEST_USER',
+  ADD_CHAT_MESSAGE: 'ADD_CHAT_MESSAGE',
+  REMOVE_CHAT_MESSAGE: 'REMOVE_CHAT_MESSAGE',
+  UPDATE_CHAT_MESSAGE: 'UPDATE_CHAT_MESSAGE',
   SET_ACCOUNT: 'SET_ACCOUNT',
   SET_CONTRACT: 'SET_CONTRACT',
   SET_PROVIDER: 'SET_PROVIDER',
@@ -57,6 +62,11 @@ const reducer = (state, action) => {
         ...state,
         chatList: filteredChatList,
       }
+    case type.UPDATE_CHAT_USER:
+      return {
+        ...state,
+        chatList: [...action.chatList],
+      }
     case type.ADD_REQUEST_USER:
       return {
         ...state,
@@ -69,6 +79,24 @@ const reducer = (state, action) => {
       return {
         ...state,
         requestList: filteredRequestList,
+      }
+    case type.ADD_CHAT_MESSAGE:
+      return {
+        ...state,
+        messageList: [...state.messageList, action.message],
+      }
+    case type.REMOVE_CHAT_MESSAGE:
+      const filteredMessageList = state.messageList.filter(
+        (_message) => _message.id !== action.messageId,
+      )
+      return {
+        ...state,
+        messageList: filteredMessageList,
+      }
+    case type.UPDATE_CHAT_MESSAGE:
+      return {
+        ...state,
+        messageList: [...action.messageList],
       }
     case type.SET_ACCOUNT:
       return {
@@ -102,6 +130,7 @@ export const Provider = ({ children }) => {
     user: state.user,
     chatList: state.chatList,
     requestList: state.requestList,
+    messageList: state.messageList,
     account: state.account,
     contract: state.contract,
     provider: state.provider,
@@ -123,11 +152,23 @@ export const Provider = ({ children }) => {
     removeChatUser: (userId) => {
       dispatch({ type: type.REMOVE_CHAT_USER, userId })
     },
+    updateChatUser: (chatList) => {
+      dispatch({ type: type.UPDATE_CHAT_USER, chatList })
+    },
     addRequestUser: (user) => {
       dispatch({ type: type.ADD_REQUEST_USER, user })
     },
     removeRequestUser: (userId) => {
       dispatch({ type: type.REMOVE_REQUEST_USER, userId })
+    },
+    addChatMessage: (message) => {
+      dispatch({ type: type.ADD_CHAT_MESSAGE, message })
+    },
+    removeChatMessage: (messageId) => {
+      dispatch({ type: type.REMOVE_CHAT_MESSAGE, messageId })
+    },
+    updateChatMessage: (messageList) => {
+      dispatch({ type: type.UPDATE_CHAT_MESSAGE, messageList })
     },
     setAccount: (account) => {
       dispatch({ type: type.SET_ACCOUNT, account })
