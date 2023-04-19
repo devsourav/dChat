@@ -1,10 +1,10 @@
 import React from 'react'
 import Brand from '../components/Brand'
-import ContainerPanel from '../components/ContainerPanel'
+import ContainerWrap from '../components/ContainerWrap'
 
 export const Default = () => {
   return (
-    <ContainerPanel
+    <ContainerWrap
       className={
         'w-auto justify-center bg-skin-primary opacity-80 sm:w-[80%] md:w-[75%] lg:w-[70%]'
       }
@@ -19,6 +19,6 @@ export const Default = () => {
           online interactions.
         </p>
       </div>
-    </ContainerPanel>
+    </ContainerWrap>
   )
 }

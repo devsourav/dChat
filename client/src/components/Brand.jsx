@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/images/logo.png'
@@ -15,4 +15,4 @@ const Brand = ({ className, ...props }) => {
   )
 }
 
-export default Brand
+export default memo(Brand)

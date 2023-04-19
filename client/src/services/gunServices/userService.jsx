@@ -1,6 +1,26 @@
-import { user } from '../../providers/gunProvider'
+import { db, user } from '../../providers/gunProvider'
 import 'gun/sea'
 import 'gun/axe'
+
+export const isUserExist = () => {
+  return user.get('alias')
+}
+
+// Current user's username
+export const getSignedUser = (callback) => {
+  user.get('alias').on((value) => {
+    callback(value)
+  })
+}
+
+export const getUserStatus = (callback) => {
+  db.on('auth', async (event) => {
+    const alias = await user.get('alias')
+    console.log(`signed in as ${alias}`)
+    console.log(`signed event ${event}`)
+    callback({ alias, event })
+  })
+}
 
 export const signIn = (userName, password, callback) => {
   user.auth(userName, password, ({ err }) => callback(err))

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import clsx from 'clsx'
 
 const Card = ({ className, ...props }) => {
@@ -10,4 +10,4 @@ const Card = ({ className, ...props }) => {
   )
 }
 
-export default Card
+export default memo(Card)

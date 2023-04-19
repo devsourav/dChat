@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import clsx from 'clsx'
 
 const Button = ({ className, ...props }) => {
@@ -10,4 +10,4 @@ const Button = ({ className, ...props }) => {
   )
 }
 
-export default Button
+export default memo(Button)

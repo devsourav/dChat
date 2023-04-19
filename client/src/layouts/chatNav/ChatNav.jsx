@@ -1,9 +1,9 @@
-import React from 'react'
-import IconTabPanel from '../components/IconTabPanel'
-import Input from '../components/Input'
+import React, { memo } from 'react'
+import ChatTabs from './ChatTabs'
+import Input from '../../components/Input'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
 
-const SideNav = () => {
+const ChatNav = () => {
   return (
     <div className="flex h-full w-full flex-col bg-skin-fill opacity-90 sm:w-[20%] md:w-[25%] lg:w-[30%]">
       <div className="bg-skin-secondary px-4 pt-4 opacity-80">
@@ -16,9 +16,9 @@ const SideNav = () => {
           component={SearchRoundedIcon}
         />
       </div>
-      <IconTabPanel />
+      <ChatTabs />
     </div>
   )
 }
 
-export default SideNav
+export default memo(ChatNav)

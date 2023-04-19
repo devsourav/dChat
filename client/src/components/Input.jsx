@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, memo } from 'react'
 import Icon from '@mui/material/Icon'
 import clsx from 'clsx'
 
@@ -23,7 +23,7 @@ const Input = forwardRef(({ className, errors, component, ...props }, ref) => {
       />
       {errors ? (
         errors[props.id] && (
-          <span className="absolute left-0 bottom-0 text-xs text-skin-secondary">
+          <span className="absolute bottom-0 left-0 text-xs text-skin-secondary">
             {props.placeholder} is required
           </span>
         )
@@ -34,4 +34,4 @@ const Input = forwardRef(({ className, errors, component, ...props }, ref) => {
   )
 })
 
-export default Input
+export default memo(Input)
