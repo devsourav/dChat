@@ -4,10 +4,13 @@ import React, { createContext, useReducer } from 'react'
 const initialState = {
   theme: 'light',
   isActive: false,
+  activeTab: 0,
+  chatId: null,
   user: null,
   chatList: [],
   requestList: [],
   messageList: [],
+  userName: '',
   account: '',
   contract: null,
   provider: null,
@@ -17,6 +20,8 @@ const initialState = {
 const type = {
   TOGGLE_THEME: 'TOGGLE_THEME',
   IS_ACTIVE_USER: 'IS_ACTIVE_USER',
+  ACTIVE_TAB: 'ACTIVE_TAB',
+  ACTIVE_CHAT_ID: 'ACTIVE_CHAT_ID',
   UPDATE_USER: 'UPDATE_USER',
   ADD_CHAT_USER: 'ADD_CHAT_USER',
   REMOVE_CHAT_USER: 'REMOVE_CHAT_USER',
@@ -26,6 +31,7 @@ const type = {
   ADD_CHAT_MESSAGE: 'ADD_CHAT_MESSAGE',
   REMOVE_CHAT_MESSAGE: 'REMOVE_CHAT_MESSAGE',
   UPDATE_CHAT_MESSAGE: 'UPDATE_CHAT_MESSAGE',
+  SET_USER_NAME: 'SET_USER_NAME',
   SET_ACCOUNT: 'SET_ACCOUNT',
   SET_CONTRACT: 'SET_CONTRACT',
   SET_PROVIDER: 'SET_PROVIDER',
@@ -43,6 +49,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         isActive: action.isActive,
+      }
+    case type.ACTIVE_TAB:
+      return {
+        ...state,
+        activeTab: action.activeTab,
+      }
+    case type.ACTIVE_CHAT_ID:
+      return {
+        ...state,
+        chatId: action.chatId,
       }
     case type.UPDATE_USER:
       return {
@@ -98,6 +114,11 @@ const reducer = (state, action) => {
         ...state,
         messageList: [...action.messageList],
       }
+    case type.SET_USER_NAME:
+      return {
+        ...state,
+        userName: action.userName,
+      }
     case type.SET_ACCOUNT:
       return {
         ...state,
@@ -127,10 +148,13 @@ export const Provider = ({ children }) => {
   const states = {
     theme: state.theme,
     isActive: state.isActive,
+    activeTab: state.activeTab,
+    chatId: state.chatId,
     user: state.user,
     chatList: state.chatList,
     requestList: state.requestList,
     messageList: state.messageList,
+    userName: state.userName,
     account: state.account,
     contract: state.contract,
     provider: state.provider,
@@ -142,6 +166,12 @@ export const Provider = ({ children }) => {
     },
     isActiveUser: (isActive) => {
       dispatch({ type: type.IS_ACTIVE_USER, isActive })
+    },
+    activeTab: (activeTab) => {
+      dispatch({ type: type.ACTIVE_TAB, activeTab })
+    },
+    activeChatId: (chatId) => {
+      dispatch({ type: type.ACTIVE_CHAT_ID, chatId })
     },
     updateUser: (user) => {
       dispatch({ type: type.UPDATE_USER, user })
@@ -169,6 +199,9 @@ export const Provider = ({ children }) => {
     },
     updateChatMessage: (messageList) => {
       dispatch({ type: type.UPDATE_CHAT_MESSAGE, messageList })
+    },
+    setUserName: (userName) => {
+      dispatch({ type: type.SET_USER_NAME, userName })
     },
     setAccount: (account) => {
       dispatch({ type: type.SET_ACCOUNT, account })

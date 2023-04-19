@@ -1,32 +1,31 @@
-import React, { useRef, useContext, useState } from 'react'
+import React, { useRef, useContext, memo } from 'react'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
 import SendIcon from '@mui/icons-material/Send'
-import Input from './Input'
-import { AppContext } from '../providers/storeProvider'
+import Input from '../../components/Input'
+import { AppContext } from '../../providers/storeProvider'
+import { sendMessage } from '../../services/gunServices/messageService'
 
-const TextBar = () => {
-  const [messageId, setMessageId] = useState(0)
-  const { actions } = useContext(AppContext)
+const ChatFooter = () => {
+  const { states } = useContext(AppContext)
   const message = useRef('')
 
   const sendAttachment = () => {}
 
-  const sendMessage = () => {
+  const sendUserMessage = () => {
     if (message.current.value !== '') {
-      actions.addChatMessage({
-        msg: message.current.value,
-        id: messageId,
-      })
-      setMessageId(messageId + 1)
+      sendMessage(states.chatId, message.current.value, '#key')
+      console.log('Message: ', message.current.value)
       message.current.value = ''
     }
-    console.log('Message: ', message.current.value, messageId)
   }
 
   return (
-    <Toolbar variant="dense">
+    <Toolbar
+      variant="dense"
+      className="bg-blur absolute bottom-0 w-full shadow-inner"
+    >
       <IconButton size="large" onClick={sendAttachment} color="warning">
         <AttachFileIcon />
       </IconButton>
@@ -38,11 +37,11 @@ const TextBar = () => {
         className="w-full bg-skin-base"
         ref={message}
       />
-      <IconButton size="large" onClick={sendMessage} color="secondary">
+      <IconButton size="large" onClick={sendUserMessage} color="secondary">
         <SendIcon />
       </IconButton>
     </Toolbar>
   )
 }
 
-export default TextBar
+export default memo(ChatFooter)

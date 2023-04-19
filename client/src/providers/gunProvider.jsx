@@ -5,6 +5,9 @@ import 'gun/axe'
 // Database
 export const db = Gun()
 
+// Gun user
+export const user = db.user().recall({ sessionStorage: true })
+
 // Production database
 // export const gun = Gun({
 //   peers: [
@@ -14,19 +17,7 @@ export const db = Gun()
 // })
 // Gun('http://yourdomain.com/gun')
 
-// Gun user
-export const user = db.user().recall({ sessionStorage: true })
-
-// Current user's username
-user.get('alias').on((value) => console.log(value))
-
-db.on('auth', async (event) => {
-  const alias = await user.get('alias')
-  console.log(`signed in as ${alias}`)
-  //   console.log(event)
-})
-
-// export const GunProvider = () => {
+// export const GunProvider = () => {~
 //   const gun = Gun(window.location.origin + '/gun')
 //   var note = { title: 'first item', text: 'from command line' }
 //   gun.put(note)

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -13,7 +13,7 @@ import Button from '../components/Button'
 import Input from '../components/Input'
 
 export const Signin = () => {
-  const { states, actions } = useContext(AppContext)
+  const { actions } = useContext(AppContext)
   const navigate = useNavigate()
   const {
     register,
@@ -22,22 +22,26 @@ export const Signin = () => {
     formState: { errors },
   } = useForm()
 
-  useEffect(() => {
-    const walletProvider = new ethers.providers.Web3Provider(window.ethereum)
-    console.log(actions)
-    walletProvider && Web3Provider(walletProvider, actions)
-  }, [])
-
   const onSubmit = async (data) => {
-    signIn(data.userName, data.password, (err) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log('user signIn')
-        navigate('chats')
-      }
-    })
-    console.log(data)
+    const walletProvider = await new ethers.providers.Web3Provider(
+      window.ethereum,
+    )
+    walletProvider &&
+      Web3Provider(walletProvider, actions, (status) => {
+        if (status) {
+          signIn(data.userName, data.password, (err) => {
+            if (err) {
+              console.log(err)
+            } else {
+              console.log('user signIn')
+              navigate('/chats', { replace: true })
+            }
+          })
+          console.log(data)
+        } else {
+          console.log('failed to signIn')
+        }
+      })
   }
 
   return (
@@ -69,7 +73,7 @@ export const Signin = () => {
         />
         <Button
           type="submit"
-          className={'w-full bg-skin-secondary py-2 px-6 font-bold'}
+          className={'w-full bg-skin-secondary px-6 py-2 font-bold'}
         >
           Sign In
         </Button>

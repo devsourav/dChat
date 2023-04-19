@@ -25,7 +25,7 @@ export const Signup = () => {
       if (err) {
         console.log(err)
       } else {
-        navigate('sign-in')
+        navigate('/sign-in')
         console.log('user signUp')
       }
     })

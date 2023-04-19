@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Error from '../pages/Error'
 import Random from './Random'
 import ChatBase from './ChatBase'
+// import { isUserExist } from '../services/gunServices/userService'
 
 const router = createBrowserRouter([
   {
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: ':userId',
+        path: ':chatId',
         async lazy() {
           let { Chat } = await import('../pages/Chat')
           return { Component: Chat }

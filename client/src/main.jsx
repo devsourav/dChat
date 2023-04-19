@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { Provider } from './providers/storeProvider'
 import App from './App'
 import ThreeStars from './layouts/ThreeStars'
 import './styles/index.scss'
@@ -25,9 +26,11 @@ const appTheme = createTheme({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider theme={appTheme}>
-      <App />
-    </ThemeProvider>
+    <Provider>
+      <ThemeProvider theme={appTheme}>
+        <App />
+      </ThemeProvider>
+    </Provider>
     <ThreeStars />
   </React.StrictMode>,
 )

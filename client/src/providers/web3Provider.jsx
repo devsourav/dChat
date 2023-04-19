@@ -3,7 +3,7 @@ import User from '../artifacts/contracts/User.sol/User.json'
 
 const contractAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512'
 
-export const Web3Provider = async (walletProvider, actions) => {
+export const Web3Provider = async (walletProvider, actions, callback) => {
   if (walletProvider) {
     window.ethereum.on('chainChanged', () => {
       window.location.reload()
@@ -18,13 +18,15 @@ export const Web3Provider = async (walletProvider, actions) => {
     const address = await signer.getAddress()
 
     const contact = new ethers.Contract(contractAddress, User.abi, signer)
-    // console.log(address)
-    // console.log(contact)
-    // console.log(walletProvider)
+    console.log(address)
+    console.log(contact)
+    console.log(walletProvider)
     actions.setAccount(address)
     actions.setContract(contact)
     actions.setProvider(walletProvider)
+    callback(true)
   } else {
     alert('Metamask is not installed')
+    callback(false)
   }
 }

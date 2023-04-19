@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import clsx from 'clsx'
 
-const ContainerPanel = ({ className, ...props }) => {
+const ContainerWrap = ({ className, ...props }) => {
   return (
     <div
       className={clsx('relative flex h-full flex-col', className)}
@@ -10,4 +10,4 @@ const ContainerPanel = ({ className, ...props }) => {
   )
 }
 
-export default ContainerPanel
+export default memo(ContainerWrap)
